@@ -12,16 +12,19 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
 
+    // Initial values for the form fields
     const initialValues = {
         email: '',
         password: '',
     };
 
+    // Validation schema using Yup
     const validationSchema = Yup.object({
         email: Yup.string().email('Invalid email').required('Required'),
-        password: Yup.string().required('Required'),
+        password: Yup.string().min(6, 'Minimum 6 characters').required('Required'),
     });
 
+    // Handle form submission
     const handleSubmit = async (values, { setSubmitting }) => {
         try {
             const res = await axios.post('/api/auth/login', values);
@@ -45,23 +48,15 @@ const LoginPage = () => {
                 {({ isSubmitting }) => (
                     <Form>
                         <div>
-                            <label>Email:</label>
-                            <Field type="email" name="email" />
-                            <ErrorMessage
-                                name="email"
-                                component="div"
-                                className="error-msg"
-                            />
+                            <label htmlFor="email">Email:</label>
+                            <Field type="email" id="email" name="email" />
+                            <ErrorMessage name="email" component="div" className="error-msg" />
                         </div>
 
                         <div>
-                            <label>Password:</label>
-                            <Field type="password" name="password" />
-                            <ErrorMessage
-                                name="password"
-                                component="div"
-                                className="error-msg"
-                            />
+                            <label htmlFor="password">Password:</label>
+                            <Field type="password" id="password" name="password" />
+                            <ErrorMessage name="password" component="div" className="error-msg" />
                         </div>
 
                         <button type="submit" disabled={isSubmitting}>

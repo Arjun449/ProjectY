@@ -1,19 +1,31 @@
-// src/context/AuthContext.jsx
-
 import { createContext, useState, useEffect } from 'react';
-import jwtDecode from 'jwt-decode';
+import * as jwtDecode from 'jwt-decode'; // Using named import as a fallback
+// import jwtDecode from 'jwt-decode';
+
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
         const token = localStorage.getItem('token');
-        return token ? jwtDecode(token) : null;
+        if (token) {
+            try {
+                return jwtDecode(token); // Decode token to get user data
+            } catch (error) {
+                console.error('Token decode error:', error);
+                return null;
+            }
+        }
+        return null;
     });
 
     const login = (token) => {
-        localStorage.setItem('token', token);
-        setUser(jwtDecode(token));
+        try {
+            localStorage.setItem('token', token);
+            setUser(jwtDecode(token));
+        } catch (error) {
+            console.error('Login error:', error);
+        }
     };
 
     const logout = () => {
