@@ -1,6 +1,7 @@
 // src/pages/LoginPage.jsx
 
 import { useState, useContext } from 'react';
+import '../index.css';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import axios from 'axios';

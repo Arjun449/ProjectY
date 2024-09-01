@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import '../App.css';
+import '../index.css';
 
 const RegisterPage = () => {
     const { login } = useContext(AuthContext);

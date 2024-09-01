@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import ProfilePage from './pages/ProfilePage';
 import TaskPage from './pages/TaskPage';
+import './index.css';
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
