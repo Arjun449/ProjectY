@@ -1,0 +1,11 @@
+/* app.css */
+
+.register-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.875em;
+}
